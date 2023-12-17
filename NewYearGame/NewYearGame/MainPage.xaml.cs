@@ -17,7 +17,7 @@ namespace NewYearGame
 
         private async void StartGameButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SecondLevelPage());
+            await Navigation.PushAsync(new ThirdLevelPage());
         }
 
         private void EndGameButton_Clicked(object sender, EventArgs e)
