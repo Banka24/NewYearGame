@@ -31,6 +31,8 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Image x:Name="Enemy" Source="sm.png"/>
+                <Image x:Name="Enemy1" Source="sm.png"/>
+                <Image x:Name="Enemy2" Source="sm.png"/>
                 <Image x:Name="Elka" Source="elka.png"/>
             </Grid>
         </StackLayout>

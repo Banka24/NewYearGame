@@ -16,10 +16,14 @@ namespace NewYearGame
         {
             Random random = new Random();
             InitializeComponent();
-            Grid.SetColumn(Enemy, random.Next(1, 7));
-            Grid.SetRow(Enemy, random.Next(1, 7));
-            Grid.SetColumn(Elka, random.Next(1, 7));
-            Grid.SetRow(Elka, random.Next(1, 7));
+            Grid.SetColumn(Enemy, random.Next(1, 5));
+            Grid.SetRow(Enemy, random.Next(1, 5));
+            Grid.SetColumn(Enemy1, random.Next(1, 5));
+            Grid.SetRow(Enemy1, random.Next(1, 5));
+            Grid.SetColumn(Enemy2, random.Next(1, 5));
+            Grid.SetRow(Enemy2, random.Next(1, 5));
+            Grid.SetColumn(Elka, random.Next(1, 5));
+            Grid.SetRow(Elka, random.Next(1, 5));
         }
         private void CheckStatus(Image elka, in int colPlayer, in int rowPlayer)
         {
@@ -28,22 +32,27 @@ namespace NewYearGame
 
             if (colElka == colPlayer && rowElka == rowPlayer)
             {
-                DisplayAlert("Победа", "Это ваша ёлка. Новы год спасён", "Продолжить");
+                DisplayAlert("Победа", "Это ваша ёлка. Новый год спасён", "Победа");
                 Navigation.PopToRootAsync();
             }
         }
 
-        private void MoveEnemy(Image enemy, in int colPlayer, in int rowPlayer)
+        private void MoveEnemy(in int colPlayer, in int rowPlayer, params Image[] enemyes)
         {
             Random random = new Random();
-            int col = random.Next(7);
-            int row = random.Next(7);
-            Grid.SetColumn(enemy, col);
-            Grid.SetRow(enemy, row);
-            if (col == colPlayer && row == rowPlayer)
+            foreach (Image enemy in enemyes)
             {
-                DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
-                Navigation.PopToRootAsync();
+                int col = random.Next(7);
+                int row = random.Next(7);
+                col = Math.Max(0, Math.Min(col, 4));
+                row = Math.Max(0, Math.Min(row, 4));
+                Grid.SetColumn(enemy, col);
+                Grid.SetRow(enemy, row);
+                if (col == colPlayer && row == rowPlayer)
+                {
+                    DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
+                    Navigation.PopToRootAsync();
+                }
             }
         }
 
@@ -71,7 +80,7 @@ namespace NewYearGame
             col = Math.Max(0, Math.Min(col, 7));
             row = Math.Max(0, Math.Min(row, 7));
 
-            MoveEnemy(Enemy, col, row);
+            MoveEnemy(col, row, Enemy, Enemy1, Enemy2);
             CheckStatus(Elka, col, row);
 
             Grid.SetColumn(this.Player, col);
