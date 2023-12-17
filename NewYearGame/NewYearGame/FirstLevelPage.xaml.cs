@@ -14,7 +14,7 @@ namespace NewYearGame
     {
         public FirstLevelPage()
         {
-            DisplayAlert("История", "На носу Новый Год, а злые снеговики украли нашу ёлку.\nСовсем распоясались.\nНадо успеть вернуть зелёную, пока моя внучка не вернулась.", "Начнём");
+            DisplayAlert("История", "На носу Новый Год, а злые снеговики украли нашу ёлку.\nСовсем распоясались, нельзя попасться им на глаза.\nНадо успеть вернуть зелёную, пока моя внучка не вернулась.", "Начнём");
             Random random = new Random();
             InitializeComponent();
             Grid.SetColumn(Enemy, random.Next(1, 4));
@@ -31,7 +31,7 @@ namespace NewYearGame
 
             if(colElka == colPlayer && rowElka == rowPlayer)
             {
-                DisplayAlert("Победа", "Ваша ёлка в другом лесу", "Продолжить");
+                DisplayAlert("О нет!", "Ваша ёлка в другом лесу", "Продолжить");
                 Navigation.PushAsync(new SecondLevelPage());
             }
         }
@@ -41,6 +41,8 @@ namespace NewYearGame
             Random random = new Random();
             int col = random.Next(4);
             int row = random.Next(4);
+            col = Math.Max(0, Math.Min(col, 4));
+            row = Math.Max(0, Math.Min(row, 4));
             Grid.SetColumn(enemy, col);
             Grid.SetRow(enemy, row);
             if(col == colPlayer && row == rowPlayer)

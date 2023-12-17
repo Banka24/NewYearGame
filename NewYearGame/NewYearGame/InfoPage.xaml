@@ -4,9 +4,9 @@
              x:Class="NewYearGame.InfoPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Тестовая версия игры NewYear 0.1.0"
+            <Label Text="Тестовая версия игры NewYear 0.1.1"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
