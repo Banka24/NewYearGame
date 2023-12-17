@@ -5,9 +5,6 @@
 
     <StackLayout>
         <Grid>
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="750"/>
-            </Grid.RowDefinitions>-->
             <Frame BackgroundColor="LightBlue" Padding="36">
                 <StackLayout>
                     <Button x:Name="StartGameButton" Text="Начать игру" HorizontalOptions="Center" VerticalOptions="Center" Clicked="StartGameButton_Clicked" Margin="0, 50"/>
