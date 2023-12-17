@@ -12,12 +12,22 @@ namespace NewYearGame
     {
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
-        private void StartGameButton_Clicked(object sender, EventArgs e)
+        private async void StartGameButton_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new FirstLevelPage());
+        }
 
+        private void EndGameButton_Clicked(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private async void InfoGameButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new InfoPage());
         }
     }
 }
