@@ -16,8 +16,8 @@ namespace NewYearGame
         {
             Random random = new Random();
             InitializeComponent();
-            Grid.SetColumn(Enemy, random.Next(4));
-            Grid.SetRow(Enemy, random.Next(4));
+            Grid.SetColumn(Enemy, random.Next(1, 4));
+            Grid.SetRow(Enemy, random.Next(1, 4));
             
         }        
 
@@ -30,8 +30,8 @@ namespace NewYearGame
             Grid.SetRow(enemy, row);
             if(col == colPlayer && row == rowPlayer)
             {
-                DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Restart");
-                Navigation.PushAsync(new FirstLevelPage());
+                DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
+                Navigation.PopToRootAsync();
             }
         }
 
