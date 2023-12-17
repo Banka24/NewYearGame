@@ -5,11 +5,15 @@
 
     <StackLayout>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="800"/>
-            </Grid.RowDefinitions>
-            <Frame>
-                <Button x:Name="StartGameButton" Text="Начать игру" HorizontalOptions="Center" VerticalOptions="Center" Clicked="StartGameButton_Clicked"/>
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="750"/>
+            </Grid.RowDefinitions>-->
+            <Frame BackgroundColor="LightBlue" Padding="36">
+                <StackLayout>
+                    <Button x:Name="StartGameButton" Text="Начать игру" HorizontalOptions="Center" VerticalOptions="Center" Clicked="StartGameButton_Clicked" Margin="0, 50"/>
+                    <Button x:Name="InfoGameButton" Text="Об игре" HorizontalOptions="Center" VerticalOptions="Center" Clicked="InfoGameButton_Clicked" Margin="0, 100"/>
+                    <Button x:Name="EndGameButton" Text="Выйти" HorizontalOptions="Center" VerticalOptions="Center" Clicked="EndGameButton_Clicked" Margin="0, 200, 0, 0"/>
+                </StackLayout>
             </Frame>
         </Grid>
     </StackLayout>
