@@ -14,7 +14,6 @@ namespace NewYearGame
     {
         public FirstLevelPage()
         {
-            DisplayAlert("История", "На носу Новый Год, а злые снеговики украли нашу ёлку.\nСовсем распоясались, нельзя попасться им на глаза.\nНадо успеть вернуть зелёную, пока моя внучка не вернулась.", "Начнём");
             Random random = new Random();
             InitializeComponent();
             Grid.SetColumn(Enemy, random.Next(1, 4));
