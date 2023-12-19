@@ -16,12 +16,14 @@ namespace NewYearGame
         {
             Random random = new Random();
             InitializeComponent();
-            Grid.SetColumn(Enemy, random.Next(1, 4));
-            Grid.SetRow(Enemy, random.Next(1, 4));
-            Grid.SetColumn(Elka, random.Next(1, 4));
-            Grid.SetRow(Elka, random.Next(1, 4));
-        }        
+            Image[] images = { Enemy, Elka };
 
+            foreach (Image image in images)
+            {
+                Grid.SetColumn(image, random.Next(1, 4));
+                Grid.SetRow(image, random.Next(1, 3));
+            }
+        }        
 
         private void CheckStatus(in int colPlayer, in int rowPlayer)
         {
@@ -39,31 +41,28 @@ namespace NewYearGame
         {
             Random random = new Random();
             Image enemy = Enemy;
+            Image elka = Elka;
 
-            int colElka = Grid.GetColumn(Elka);
-            int rowElka = Grid.GetRow(Elka);
+            int colElka = Grid.GetColumn(elka);
+            int rowElka = Grid.GetRow(elka);
 
             int col = random.Next(4);
             int row = random.Next(4);
 
-            col = Math.Max(0, Math.Min(col, 4));
-            row = Math.Max(0, Math.Min(row, 4));
-
-            if (col == colElka && row == rowElka)
+            if(col == colElka && row == rowElka)
             {
-                MoveEnemy(colPlayer, rowPlayer);
+                col = random.Next(4);
+                row = random.Next(4);
             }
 
             if (col == colPlayer && row == rowPlayer)
             {
                 DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
-                Thread.Sleep(5000);
                 Navigation.PopToRootAsync();
             }
 
             Grid.SetColumn(enemy, col);
             Grid.SetRow(enemy, row);
-
         }
 
         private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
