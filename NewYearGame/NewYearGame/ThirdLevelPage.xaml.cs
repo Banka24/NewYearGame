@@ -50,8 +50,6 @@ namespace NewYearGame
                 int row = random.Next(7);
                 col = Math.Max(0, Math.Min(col, 4));
                 row = Math.Max(0, Math.Min(row, 7));
-                Grid.SetColumn(enemy, col);
-                Grid.SetRow(enemy, row);
 
                 if(col == colElka && row == rowElka)
                 {
@@ -64,6 +62,10 @@ namespace NewYearGame
                     Thread.Sleep(5000);
                     Navigation.PopToRootAsync();
                 }
+
+                Grid.SetColumn(enemy, col);
+                Grid.SetRow(enemy, row);
+
             }
         }
 

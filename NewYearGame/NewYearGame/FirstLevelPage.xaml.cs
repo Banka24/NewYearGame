@@ -49,9 +49,6 @@ namespace NewYearGame
             col = Math.Max(0, Math.Min(col, 4));
             row = Math.Max(0, Math.Min(row, 4));
 
-            Grid.SetColumn(enemy, col);
-            Grid.SetRow(enemy, row);
-
             if (col == colElka && row == rowElka)
             {
                 MoveEnemy(colPlayer, rowPlayer);
@@ -63,6 +60,10 @@ namespace NewYearGame
                 Thread.Sleep(5000);
                 Navigation.PopToRootAsync();
             }
+
+            Grid.SetColumn(enemy, col);
+            Grid.SetRow(enemy, row);
+
         }
 
         private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
