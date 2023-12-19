@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
                 <Image x:Name="Player" Source="dm.png">
                     <Image.GestureRecognizers>

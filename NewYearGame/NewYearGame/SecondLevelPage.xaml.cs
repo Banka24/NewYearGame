@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,18 +16,18 @@ namespace NewYearGame
         {
             Random random = new Random();
             InitializeComponent();
-            Grid.SetColumn(Enemy, random.Next(1, 5));
-            Grid.SetRow(Enemy, random.Next(1, 5));
-            Grid.SetColumn(Enemy1, random.Next(1, 5));
-            Grid.SetRow(Enemy1, random.Next(1, 5));
-            Grid.SetColumn(Elka, random.Next(1, 5));
-            Grid.SetRow(Elka, random.Next(1, 5));
+            Grid.SetColumn(Enemy, random.Next(1, 4));
+            Grid.SetRow(Enemy, random.Next(1, 7));
+            Grid.SetColumn(Enemy1, random.Next(1, 4));
+            Grid.SetRow(Enemy1, random.Next(1, 7));
+            Grid.SetColumn(Elka, random.Next(1, 4));
+            Grid.SetRow(Elka, random.Next(1, 7));
         }
 
-        private void CheckStatus(Image elka, in int colPlayer, in int rowPlayer)
+        private void CheckStatus(in int colPlayer, in int rowPlayer)
         {
-            int colElka = Grid.GetColumn(elka);
-            int rowElka = Grid.GetRow(elka);
+            int colElka = Grid.GetColumn(Elka);
+            int rowElka = Grid.GetRow(Elka);
 
             if (colElka == colPlayer && rowElka == rowPlayer)
             {
@@ -36,20 +36,30 @@ namespace NewYearGame
             }
         }
 
-        private void MoveEnemy(in int colPlayer, in int rowPlayer, params Image [] enemyes)
+        private void MoveEnemy(in int colPlayer, in int rowPlayer)
         {
             Random random = new Random();
-            foreach(Image enemy in enemyes)
+            Image[] enemyes = { Enemy, Enemy1};
+            int colElka = Grid.GetColumn(Elka);
+            int rowElka = Grid.GetColumn(Elka);
+            foreach (Image enemy in enemyes)
             {
-                int col = random.Next(7);
+                int col = random.Next(4);
                 int row = random.Next(7);
                 col = Math.Max(0, Math.Min(col, 4));
-                row = Math.Max(0, Math.Min(row, 4));
+                row = Math.Max(0, Math.Min(row, 7));
                 Grid.SetColumn(enemy, col);
                 Grid.SetRow(enemy, row);
+
+                if (col == colElka && row == rowElka)
+                {
+                    MoveEnemy(colPlayer, rowPlayer);
+                }
+
                 if (col == colPlayer && row == rowPlayer)
                 {
                     DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
+                    Thread.Sleep(5000);
                     Navigation.PopToRootAsync();
                 }
             }
@@ -76,11 +86,11 @@ namespace NewYearGame
                     break;
             }
 
-            col = Math.Max(0, Math.Min(col, 7));
+            col = Math.Max(0, Math.Min(col, 4));
             row = Math.Max(0, Math.Min(row, 7));
 
-            MoveEnemy(col, row, Enemy, Enemy1);
-            CheckStatus(Elka, col, row);
+            MoveEnemy(col, row);
+            CheckStatus(col, row);
 
             Grid.SetColumn(this.Player, col);
             Grid.SetRow(this.Player, row);

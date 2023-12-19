@@ -23,10 +23,10 @@ namespace NewYearGame
         }        
 
 
-        private void CheckStatus(Image elka, in int colPlayer, in int rowPlayer)
+        private void CheckStatus(in int colPlayer, in int rowPlayer)
         {
-            int colElka = Grid.GetColumn(elka);
-            int rowElka = Grid.GetRow(elka);
+            int colElka = Grid.GetColumn(Elka);
+            int rowElka = Grid.GetRow(Elka);
 
             if(colElka == colPlayer && rowElka == rowPlayer)
             {
@@ -35,18 +35,32 @@ namespace NewYearGame
             }
         }
 
-        private void MoveEnemy(Image enemy, in int colPlayer, in int rowPlayer)
+        private void MoveEnemy(in int colPlayer, in int rowPlayer)
         {
             Random random = new Random();
+            Image enemy = Enemy;
+
+            int colElka = Grid.GetColumn(Elka);
+            int rowElka = Grid.GetRow(Elka);
+
             int col = random.Next(4);
             int row = random.Next(4);
+
             col = Math.Max(0, Math.Min(col, 4));
             row = Math.Max(0, Math.Min(row, 4));
+
             Grid.SetColumn(enemy, col);
             Grid.SetRow(enemy, row);
-            if(col == colPlayer && row == rowPlayer)
+
+            if (col == colElka && row == rowElka)
+            {
+                MoveEnemy(colPlayer, rowPlayer);
+            }
+
+            if (col == colPlayer && row == rowPlayer)
             {
                 DisplayAlert("Проигрыш", "Не расстраивайтесь, такое бывает.\nПопробуйте заново", "Ok");
+                Thread.Sleep(5000);
                 Navigation.PopToRootAsync();
             }
         }
@@ -75,8 +89,8 @@ namespace NewYearGame
             col = Math.Max(0, Math.Min(col, 4));
             row = Math.Max(0, Math.Min(row, 4));
                         
-            MoveEnemy(Enemy, col, row);
-            CheckStatus(Elka, col, row);
+            MoveEnemy(col, row);
+            CheckStatus(col, row);
 
             Grid.SetColumn(this.Player, col);
             Grid.SetRow(this.Player, row);
